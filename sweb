@@ -1,0 +1,18 @@
+# import the library you want
+
+#静态网站爬取
+
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+import re
+
+# analyse the html
+html = urlopen("http://www.pythonscraping.com/pages/page3.html")
+bs0bj = BeautifulSoup(html, "html.parser")
+
+# find the rules of the data you want
+images = bs0bj.findAll("img",{"src":re.compile("\.\.\/img\/gifts/img.*\.jpg")})
+
+# print all you want
+for image in images:
+    print(image["src"])
